@@ -20,14 +20,17 @@ public class MemberFacade {
         return memberJoinUseCase.join(username, password, nickname);
     }
 
+    @Transactional(readOnly = true)
     public long count() {
         return memberQueryUseCase.count();
     }
 
+    @Transactional(readOnly = true)
     public Optional<Member> findById(int id) {
         return memberQueryUseCase.findById(id);
     }
 
+    @Transactional(readOnly = true)
     public Optional<Member> findByUsername(String username) {
         return memberQueryUseCase.findByUsername(username);
     }

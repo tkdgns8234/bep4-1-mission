@@ -6,22 +6,14 @@ import com.back.boundedContext.post.out.PostRepository;
 import com.back.global.eventPublisher.EventPublisher;
 import com.back.shared.dto.PostDto;
 import com.back.shared.post.event.PostCreatedEvent;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
-@Getter
-public class PostService {
+public class PostUseCase {
     private final PostRepository postRepository;
     private final EventPublisher eventPublisher;
-
-    public Long count() {
-        return postRepository.count();
-    }
 
     public Post write(Member author, String title, String content) {
         Post post = postRepository.save(new Post(author, title, content));
@@ -29,9 +21,5 @@ public class PostService {
         eventPublisher.publish(new PostCreatedEvent(new PostDto(post)));
 
         return post;
-    }
-
-    public Optional<Post> findById(int id) {
-        return postRepository.findById(id);
     }
 }
