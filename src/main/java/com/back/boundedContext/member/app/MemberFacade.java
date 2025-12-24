@@ -4,6 +4,7 @@ import com.back.boundedContext.member.domain.Member;
 import com.back.boundedContext.member.out.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -11,21 +12,23 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberFacade {
     private final MemberJoinUseCase memberJoinUseCase;
+    private final MemberQueryUseCase memberQueryUseCase;
     private final MemberRepository memberRepository;
 
-    public long count() {
-        return memberRepository.count();
-    }
-
+    @Transactional
     public Member join(String username, String password, String nickname) {
         return memberJoinUseCase.join(username, password, nickname);
     }
 
+    public long count() {
+        return memberQueryUseCase.count();
+    }
+
     public Optional<Member> findById(int id) {
-        return memberRepository.findById(id);
+        return memberQueryUseCase.findById(id);
     }
 
     public Optional<Member> findByUsername(String username) {
-        return memberRepository.findByUsername(username);
+        return memberQueryUseCase.findByUsername(username);
     }
 }

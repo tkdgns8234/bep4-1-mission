@@ -1,9 +1,10 @@
 package com.back.global.initData;
 
-import com.back.boundedContext.member.domain.Member;
-import com.back.boundedContext.post.domain.Post;
 import com.back.boundedContext.member.app.MemberFacade;
+import com.back.boundedContext.member.domain.Member;
+import com.back.boundedContext.member.out.MemberRepository;
 import com.back.boundedContext.post.app.PostService;
+import com.back.boundedContext.post.domain.Post;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;

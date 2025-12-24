@@ -15,12 +15,12 @@ import static org.springframework.transaction.event.TransactionPhase.AFTER_COMMI
 @Component
 @RequiredArgsConstructor
 public class MemberEventListener {
-    private final MemberFacade memberService;
+    private final MemberFacade memberFacade;
 
     @TransactionalEventListener(phase = AFTER_COMMIT)
     @Transactional(propagation = REQUIRES_NEW)
     public void handle(PostCreatedEvent event) {
-        Member member = memberService.findById(event.getPostDto().authorId()).get();
+        Member member = memberFacade.findById(event.getPostDto().authorId()).get();
 
         member.increaseActivityScore(3);
     }
@@ -28,7 +28,7 @@ public class MemberEventListener {
     @TransactionalEventListener(phase = AFTER_COMMIT)
     @Transactional(propagation = REQUIRES_NEW)
     public void handle(PostCommentCreatedEvent event) {
-        Member member = memberService.findById(event.getPostCommentDto().authorId()).get();
+        Member member = memberFacade.findById(event.getPostCommentDto().authorId()).get();
 
         member.increaseActivityScore(1);
     }
