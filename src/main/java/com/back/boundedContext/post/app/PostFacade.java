@@ -2,6 +2,7 @@ package com.back.boundedContext.post.app;
 
 import com.back.boundedContext.member.domain.Member;
 import com.back.boundedContext.post.domain.Post;
+import com.back.global.rsData.RsData;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,10 @@ import java.util.Optional;
 @Getter
 public class PostFacade {
     private final PostQueryUseCase postQueryUseCase;
-    private final PostUseCase postUseCase;
+    private final PostWriteUseCase postWriteUseCase;
 
-    public Post write(Member author, String title, String content) {
-        return postUseCase.write(author, title, content);
+    public RsData<Post> write(Member author, String title, String content) {
+        return postWriteUseCase.write(author, title, content);
     }
 
     public Long count() {
