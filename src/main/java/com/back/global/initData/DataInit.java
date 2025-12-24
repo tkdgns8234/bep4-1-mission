@@ -58,6 +58,7 @@ public class DataInit {
         Member user3Member = memberFacade.findByUsername("user3").get();
 
         Post post1 = postFacade.write(user1Member, "제목1", "내용1").getData();
+        log.debug("post id={}", post1.getId());
         Post post2 = postFacade.write(user1Member, "제목2", "내용2").getData();
         Post post3 = postFacade.write(user1Member, "제목3", "내용3").getData();
         Post post4 = postFacade.write(user2Member, "제목4", "내용4").getData();
