@@ -27,14 +27,13 @@ public class PostFacade {
     @Transactional
     public PostMember syncMember(MemberDto memberDto) {
         PostMember postMember = new PostMember(
+                memberDto.id(),
+                memberDto.createDate(),
+                memberDto.modifyDate(),
                 memberDto.username(),
                 "",
                 memberDto.nickname()
         );
-
-        postMember.setId(memberDto.id());
-        postMember.setCreateDate(memberDto.createDate());
-        postMember.setModifyDate(memberDto.modifyDate());
 
         return postCommandUseCase.savePostMember(postMember);
     }
