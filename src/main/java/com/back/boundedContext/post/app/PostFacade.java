@@ -2,10 +2,13 @@ package com.back.boundedContext.post.app;
 
 import com.back.boundedContext.member.domain.Member;
 import com.back.boundedContext.post.domain.Post;
+import com.back.boundedContext.post.domain.PostMember;
 import com.back.global.rsData.RsData;
+import com.back.shared.member.dto.MemberDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -14,10 +17,26 @@ import java.util.Optional;
 @Getter
 public class PostFacade {
     private final PostQueryUseCase postQueryUseCase;
-    private final PostWriteUseCase postWriteUseCase;
+    private final PostMemberWriteUseCase postMemberWriteUseCase;
+    private final PostCommandUseCase postCommandUseCase;
 
     public RsData<Post> write(Member author, String title, String content) {
-        return postWriteUseCase.write(author, title, content);
+        return postMemberWriteUseCase.write(author, title, content);
+    }
+
+    @Transactional
+    public PostMember syncMember(MemberDto memberDto) {
+        PostMember postMember = new PostMember(
+                memberDto.username(),
+                "",
+                memberDto.nickname()
+        );
+
+        postMember.setId(memberDto.id());
+        postMember.setCreateDate(memberDto.createDate());
+        postMember.setModifyDate(memberDto.modifyDate());
+
+        return postCommandUseCase.savePostMember(postMember);
     }
 
     public Long count() {

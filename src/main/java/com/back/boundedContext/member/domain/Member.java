@@ -1,6 +1,6 @@
 package com.back.boundedContext.member.domain;
 
-import com.back.shared.member.out.domain.SourceMember;
+import com.back.shared.member.domain.SourceMember;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
