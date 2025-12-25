@@ -8,12 +8,12 @@ import org.springframework.web.client.RestClient;
 @RequiredArgsConstructor
 public class MemberApiClient {
     private final RestClient restClient = RestClient.builder()
-            .baseUrl("http://localhost:8080/member/api/v1/")
+            .baseUrl("http://localhost:8080/member/api/v1")
             .build();
 
     public String getRandomSecureTip() {
         return restClient.get()
-                .uri("members/randomSecureTip")
+                .uri("/members/randomSecureTip")
                 .retrieve()
                 .body(String.class);
     }
