@@ -4,6 +4,7 @@ import com.back.boundedContext.member.app.MemberFacade;
 import com.back.boundedContext.member.domain.Member;
 import com.back.boundedContext.post.app.PostFacade;
 import com.back.boundedContext.post.domain.Post;
+import com.back.shared.member.dto.MemberDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +35,7 @@ public class DataInit {
             self.makeBaseMembers();
             self.makeBasePosts();
             self.makeBasePostComments();
+            self.modifyMember();
         };
     }
 
@@ -92,5 +94,10 @@ public class DataInit {
         post3.addComment(user3Member, "댓글7");
 
         post4.addComment(user1Member, "댓글8");
+    }
+
+    @Transactional
+    public void modifyMember() {
+        memberFacade.modify(new MemberDto(2, null, null, "정상훈", "111", "pwd"));
     }
 }

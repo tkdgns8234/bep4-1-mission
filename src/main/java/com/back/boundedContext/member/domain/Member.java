@@ -16,6 +16,20 @@ public class Member extends SourceMember {
         super(username, password, nickname);
     }
 
+    public void modify(String username, String password, String nickname) {
+        if (username != null && !username.isEmpty()) {
+            this.setUsername(username);
+        }
+
+        if (password != null && !password.isEmpty()) {
+            this.setPassword(password);
+        }
+
+        if (nickname != null && !nickname.isEmpty()) {
+            this.setNickname(nickname);
+        }
+    }
+
     public int increaseActivityScore(int amount) {
         setActivityScore(getActivityScore() + amount);
 

@@ -5,11 +5,12 @@ import com.back.boundedContext.member.domain.Member;
 import java.time.LocalDateTime;
 
 public record MemberDto(
-        int id,
+        Integer id,
         LocalDateTime createDate,
         LocalDateTime modifyDate,
         String username,
-        String nickname
+        String nickname,
+        String password
 ) {
     public MemberDto(Member member) {
         this(
@@ -17,7 +18,8 @@ public record MemberDto(
             member.getCreateDate(),
             member.getModifyDate(),
             member.getUsername(),
-            member.getNickname()
+            member.getNickname(),
+            member.getPassword()
         );
     }
 }
