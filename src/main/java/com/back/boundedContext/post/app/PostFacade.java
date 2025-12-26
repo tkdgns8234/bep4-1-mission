@@ -15,40 +15,29 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Getter
 public class PostFacade {
-    private final PostQueryUseCase postQueryUseCase;
-    private final PostMemberWriteUseCase postMemberWriteUseCase;
-    private final PostCommandUseCase postCommandUseCase;
-    private final PostMemberQueryUseCase postMemberQueryUseCase;
+    private final PostSyncMemberUseCase postSyncMemberUseCase;
+    private final PostWriteUseCase postWriteUseCase;
+    private final PostSupport postSupport;
 
     public RsData<Post> write(PostMember author, String title, String content) {
-        return postMemberWriteUseCase.write(author, title, content);
+        return postWriteUseCase.write(author, title, content);
     }
 
     @Transactional
     public PostMember syncMember(MemberDto memberDto) {
-        PostMember postMember = new PostMember(
-                memberDto.id(),
-                memberDto.createDate(),
-                memberDto.modifyDate(),
-                memberDto.username(),
-                "",
-                memberDto.nickname(),
-                memberDto.activityScore()
-        );
-
-        return postCommandUseCase.savePostMember(postMember);
+        return postSyncMemberUseCase.syncMember(memberDto);
     }
 
     public Long count() {
-        return postQueryUseCase.count();
+        return postSupport.count();
     }
 
     public Optional<Post> findById(int id) {
-        return postQueryUseCase.findById(id);
+        return postSupport.findById(id);
     }
 
     @Transactional(readOnly = true)
-    public Optional<PostMember> findPostMemberByUsername(String username) {
-        return postMemberQueryUseCase.findByUsername(username);
+    public Optional<PostMember> findMemberByUsername(String username) {
+        return postSupport.findMemberByUsername(username);
     }
 }

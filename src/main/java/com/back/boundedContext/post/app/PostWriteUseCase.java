@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PostMemberWriteUseCase {
+public class PostWriteUseCase {
     private final PostRepository postRepository;
     private final EventPublisher eventPublisher;
     private final MemberApiClient memberApiClient;
