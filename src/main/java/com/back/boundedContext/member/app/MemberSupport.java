@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MemberQueryUseCase {
+public class MemberSupport {
     private final MemberRepository memberRepository;
 
     public long count() {
