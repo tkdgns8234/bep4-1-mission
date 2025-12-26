@@ -25,7 +25,7 @@ import static jakarta.persistence.CascadeType.REMOVE;
 @Getter
 public class Post extends BaseIdAndTime {
     @ManyToOne(fetch = FetchType.LAZY)
-    public Member author;
+    public PostMember author;
 
     public String title;
 
@@ -35,13 +35,13 @@ public class Post extends BaseIdAndTime {
     @OneToMany(mappedBy = "post", cascade = {PERSIST, REMOVE}, orphanRemoval = true)
     public List<PostComment> comments = new ArrayList<>();
 
-    public Post(Member author, String title, String content) {
+    public Post(PostMember author, String title, String content) {
         this.author = author;
         this.title = title;
         this.content = content;
     }
 
-    public PostComment addComment(Member author, String content) {
+    public PostComment addComment(PostMember author, String content) {
         PostComment postComment = new PostComment(author, this, content);
         comments.add(postComment);
 
