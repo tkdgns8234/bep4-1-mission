@@ -1,55 +1,38 @@
-package com.back.global.initData;
+package com.back.boundedContext.post.in;
 
-import com.back.boundedContext.member.app.MemberFacade;
-import com.back.boundedContext.member.domain.Member;
 import com.back.boundedContext.post.app.PostFacade;
 import com.back.boundedContext.post.domain.Post;
 import com.back.boundedContext.post.domain.PostMember;
-import com.back.shared.member.dto.MemberDto;
+import com.back.global.rsData.RsData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.annotation.Order;
 import org.springframework.transaction.annotation.Transactional;
 
 @Configuration
 @Slf4j
-public class DataInit {
-    private final DataInit self;
-    private final MemberFacade memberFacade;
+public class PostDataInit {
+    private final PostDataInit self;
     private final PostFacade postFacade;
 
-    public DataInit(
-            @Lazy DataInit self,
-            MemberFacade memberFacade,
+    public PostDataInit(
+            @Lazy PostDataInit self,
             PostFacade postFacade
     ) {
         this.self = self;
-        this.memberFacade = memberFacade;
         this.postFacade = postFacade;
     }
 
     @Bean
-    public ApplicationRunner baseInitDataRunner() {
+    @Order(2)
+    public ApplicationRunner postDataInitApplicationRunner() {
         return args -> {
-            self.makeBaseMembers();
             self.makeBasePosts();
             self.makeBasePostComments();
-            self.modifyMember();
         };
-    }
-
-    @Transactional
-    public void makeBaseMembers() {
-        if (memberFacade.count() > 0) return;
-
-        Member systemMember = memberFacade.join("system", "1234", "시스템").getData();
-        Member holdingMember = memberFacade.join("holding", "1234", "홀딩").getData();
-        Member adminMember = memberFacade.join("admin", "1234", "관리자").getData();
-        Member user1Member = memberFacade.join("user1", "1234", "유저1").getData();
-        Member user2Member = memberFacade.join("user2", "1234", "유저2").getData();
-        Member user3Member = memberFacade.join("user3", "1234", "유저3").getData();
     }
 
     @Transactional
@@ -60,13 +43,23 @@ public class DataInit {
         PostMember user2Member = postFacade.findPostMemberByUsername("user2").get();
         PostMember user3Member = postFacade.findPostMemberByUsername("user3").get();
 
-        Post post1 = postFacade.write(user1Member, "제목1", "내용1").getData();
-        log.debug("post id={}", post1.getId());
-        Post post2 = postFacade.write(user1Member, "제목2", "내용2").getData();
-        Post post3 = postFacade.write(user1Member, "제목3", "내용3").getData();
-        Post post4 = postFacade.write(user2Member, "제목4", "내용4").getData();
-        Post post5 = postFacade.write(user2Member, "제목5", "내용5").getData();
-        Post post6 = postFacade.write(user3Member, "제목6", "내용6").getData();
+        RsData<Post> post1RsData = postFacade.write(user1Member, "제목1", "내용1");
+        log.debug(post1RsData.getMsg());
+
+        RsData<Post> post2RsData = postFacade.write(user1Member, "제목2", "내용2");
+        log.debug(post2RsData.getMsg());
+
+        RsData<Post> post3RsData = postFacade.write(user1Member, "제목3", "내용3");
+        log.debug(post3RsData.getMsg());
+
+        RsData<Post> post4RsData = postFacade.write(user2Member, "제목4", "내용4");
+        log.debug(post4RsData.getMsg());
+
+        RsData<Post> post5RsData = postFacade.write(user2Member, "제목5", "내용5");
+        log.debug(post5RsData.getMsg());
+
+        RsData<Post> post6RsData = postFacade.write(user3Member, "제목6", "내용6");
+        log.debug(post6RsData.getMsg());
     }
 
     @Transactional
@@ -95,10 +88,5 @@ public class DataInit {
         post3.addComment(user3Member, "댓글7");
 
         post4.addComment(user1Member, "댓글8");
-    }
-
-    @Transactional
-    public void modifyMember() {
-        memberFacade.modify(new MemberDto(2, null, null, "정상훈", "111", "pwd"));
     }
 }
