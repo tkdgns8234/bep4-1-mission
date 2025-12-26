@@ -29,7 +29,7 @@ public class CashDataInit {
 
     @Bean
     @Order(2)
-    public ApplicationRunner memberDataInitApplicationRunner() {
+    public ApplicationRunner cashDataInitApplicationRunner() {
         return args -> {
             self.makeBaseCredits();
         };
