@@ -32,7 +32,8 @@ public class PostFacade {
                 memberDto.modifyDate(),
                 memberDto.username(),
                 "",
-                memberDto.nickname()
+                memberDto.nickname(),
+                memberDto.activityScore()
         );
 
         return postCommandUseCase.savePostMember(postMember);

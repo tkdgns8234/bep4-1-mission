@@ -10,7 +10,8 @@ public record MemberDto(
         LocalDateTime modifyDate,
         String username,
         String nickname,
-        String password
+        String password,
+        int activityScore
 ) {
     public MemberDto(Member member) {
         this(
@@ -19,7 +20,8 @@ public record MemberDto(
             member.getModifyDate(),
             member.getUsername(),
             member.getNickname(),
-            member.getPassword()
+            member.getPassword(),
+            member.getActivityScore()
         );
     }
 }

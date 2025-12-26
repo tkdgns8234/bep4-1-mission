@@ -48,6 +48,6 @@ public class MemberDataInit {
 
     @Transactional
     public void modifyMember() {
-        memberFacade.modify(new MemberDto(2, null, null, "정상훈", "111", "pwd"));
+        memberFacade.modify(new MemberDto(2, null, null, "정상훈", "111", "pwd",0));
     }
 }
