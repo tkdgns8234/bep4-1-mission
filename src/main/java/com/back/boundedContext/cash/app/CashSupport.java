@@ -4,6 +4,7 @@ import com.back.boundedContext.cash.domain.CashMember;
 import com.back.boundedContext.cash.domain.Wallet;
 import com.back.boundedContext.cash.out.CashMemberRepository;
 import com.back.boundedContext.cash.out.WalletRepository;
+import com.back.boundedContext.market.domain.policy.CashPolicy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,13 @@ public class CashSupport {
 
     public Optional<Wallet> findByUsername(CashMember cashMember) {
         return walletRepository.findWalletByMember(cashMember);
+    }
+
+    public Optional<Wallet> findWalletByMemberId(int holderId) {
+        return walletRepository.findByMemberId(holderId);
+    }
+
+    public Optional<Wallet> findHoldingWallet() {
+        return walletRepository.findByMemberId(CashPolicy.HOLDING_MEMBER_ID);
     }
 }
