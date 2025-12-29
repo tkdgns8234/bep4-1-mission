@@ -19,7 +19,7 @@ public class CashApiClient {
                 });
     }
 
-    public long getBalanceByHolderId(int memberId) {
+    public long getBalanceByMemberId(int memberId) {
         WalletDto walletDto = getItemByMemberId(memberId);
         return walletDto.getBalance();
     }

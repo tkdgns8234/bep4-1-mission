@@ -54,7 +54,7 @@ public class ApiV1OrderController {
         if (order.isPaid())
             throw new DomainException("400-3", "이미 결제된 주문입니다.");
 
-        long walletBalance = cashApiClient.getBalanceByHolderId(order.getBuyer().getId());
+        long walletBalance = cashApiClient.getBalanceByMemberId(order.getBuyer().getId());
 
         if (order.getSalePrice() > walletBalance + reqBody.amount())
             throw new DomainException("400-4", "결제를 완료하기에 결제 금액이 부족합니다.");

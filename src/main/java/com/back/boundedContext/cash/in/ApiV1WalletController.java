@@ -18,7 +18,7 @@ public class ApiV1WalletController {
 
     @GetMapping("/by-member/{memberId}")
     @Transactional(readOnly = true)
-    public WalletDto getItemByHolder(
+    public WalletDto getItemByMember(
             @PathVariable int memberId
     ) {
         return cashFacade
