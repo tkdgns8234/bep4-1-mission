@@ -16,7 +16,7 @@ public class MarketCreateOrderUseCase {
 
         Order rsOrder = orderRepository.save(order);
 
-//        cart.clearItems();
+        cart.clearItems();
 
         return rsOrder;
     }

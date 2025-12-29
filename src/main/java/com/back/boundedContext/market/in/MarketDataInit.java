@@ -168,18 +168,18 @@ public class MarketDataInit {
         Order order3 = marketFacade.createOrder(cart3);
 
         System.out.println("orderValue= %s".formatted(order1.toString()));
-//
-//        // 주문 생성 때문에 cart1이 비어있기 때문에 다시 아이템 추가
-//        Product product1 = marketFacade.findProductById(1).get();
-//        Product product2 = marketFacade.findProductById(2).get();
-//        Product product3 = marketFacade.findProductById(3).get();
-//        Product product4 = marketFacade.findProductById(4).get();
-//        Product product5 = marketFacade.findProductById(5).get();
-//        Product product6 = marketFacade.findProductById(6).get();
-//
-//        cart1.addItem(product1);
-//        cart1.addItem(product2);
-//        cart1.addItem(product3);
-//        cart1.addItem(product4);
+
+        // 주문 생성 때문에 cart1이 비어있기 때문에 다시 아이템 추가
+        Product product1 = marketFacade.findProductById(1).get();
+        Product product2 = marketFacade.findProductById(2).get();
+        Product product3 = marketFacade.findProductById(3).get();
+        Product product4 = marketFacade.findProductById(4).get();
+        Product product5 = marketFacade.findProductById(5).get();
+        Product product6 = marketFacade.findProductById(6).get();
+
+        cart1.addItem(product1);
+        cart1.addItem(product2);
+        cart1.addItem(product3);
+        cart1.addItem(product4);
     }
 }
