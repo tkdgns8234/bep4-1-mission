@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,6 +35,10 @@ public class PostFacade {
 
     public Optional<Post> findById(int id) {
         return postSupport.findById(id);
+    }
+
+    public List<Post> findByOrderByIdDesc() {
+        return postSupport.findByOrderByIdDesc();
     }
 
     @Transactional(readOnly = true)
