@@ -42,4 +42,10 @@ public class CashFacade {
     public Optional<Wallet> findWalletByMember(CashMember member) {
         return cashSupport.findByUsername(member);
     }
+
+
+    @Transactional(readOnly = true)
+    public Optional<Wallet> findWalletByMemberId(int memberId) {
+        return cashSupport.findWalletByMemberId(memberId);
+    }
 }
