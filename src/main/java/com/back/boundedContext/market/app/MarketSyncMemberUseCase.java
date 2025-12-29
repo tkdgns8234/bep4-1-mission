@@ -1,7 +1,7 @@
 package com.back.boundedContext.market.app;
 
 import com.back.boundedContext.market.domain.MarketMember;
-import com.back.boundedContext.market.out.MarketRepository;
+import com.back.boundedContext.market.out.MarketMemberRepository;
 import com.back.shared.member.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class MarketSyncMemberUseCase {
-    private final MarketRepository marketRepository;
+    private final MarketMemberRepository marketMemberRepository;
 
     public void syncMember(MemberDto member) {
         MarketMember marketMember = new MarketMember(
@@ -22,6 +22,6 @@ public class MarketSyncMemberUseCase {
                 member.activityScore()
         );
 
-        marketRepository.save(marketMember);
+        marketMemberRepository.save(marketMember);
     }
 }
