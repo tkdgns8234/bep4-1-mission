@@ -10,6 +10,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -31,6 +32,7 @@ public class PayoutCandidateItem extends BaseIdAndTime {
     private PayoutMember payee;
     private long amount;
     @OneToOne(fetch = LAZY)
+    @Setter
     private PayoutItem payoutItem;
 
     public PayoutCandidateItem(PayoutEventType eventType, String relTypeCode, int relId, LocalDateTime paymentDate, PayoutMember payer, PayoutMember payee, long amount) {
@@ -43,7 +45,7 @@ public class PayoutCandidateItem extends BaseIdAndTime {
         this.amount = amount;
     }
 
-    public void setPayoutItem(PayoutItem payoutItem) {
-        this.payoutItem = payoutItem;
+    public void modifyPaymentDate(LocalDateTime modifyDate) {
+        this.paymentDate = modifyDate;
     }
 }
