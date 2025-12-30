@@ -1,5 +1,6 @@
 package com.back.shared.market.dto;
 
+import com.back.standard.CanGetModelTypeCode;
 import java.time.LocalDateTime;
 
 public record OrderDto (
@@ -12,4 +13,10 @@ public record OrderDto (
         long salePrice,
         LocalDateTime requestPaymentDate,
         LocalDateTime paymentDate
-){ }
+) implements CanGetModelTypeCode {
+
+    @Override
+    public String getModelTypeCode() {
+        return "Order";
+    }
+}
