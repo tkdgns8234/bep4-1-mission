@@ -4,7 +4,6 @@ import com.back.boundedContext.member.domain.Member;
 import com.back.boundedContext.member.out.MemberRepository;
 import com.back.global.eventPublisher.EventPublisher;
 import com.back.global.exception.DomainException;
-import com.back.shared.member.dto.MemberDto;
 import com.back.shared.member.event.MemberModifyEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,7 @@ public class MemberModifyUseCase {
 
         member.modify(username, password, nickname);
 
-        eventPublisher.publish(new MemberModifyEvent(new MemberDto(member)));
+        eventPublisher.publish(new MemberModifyEvent(member.toDto()));
 
         return member;
     }

@@ -1,7 +1,5 @@
 package com.back.shared.market.dto;
 
-import com.back.boundedContext.market.domain.MarketMember;
-
 import java.time.LocalDateTime;
 
 public record MarketMemberDto (
@@ -11,15 +9,4 @@ public record MarketMemberDto (
         String username,
         String nickname,
         int activityScore
-) {
-    public MarketMemberDto(MarketMember marketMember) {
-        this(
-                marketMember.getId(),
-                marketMember.getCreateDate(),
-                marketMember.getModifyDate(),
-                marketMember.getUsername(),
-                marketMember.getNickname(),
-                marketMember.getActivityScore()
-        );
-    }
-}
+) { }

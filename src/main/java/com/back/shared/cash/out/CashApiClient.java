@@ -26,6 +26,6 @@ public class CashApiClient {
 
     public long getBalanceByMemberId(int memberId) {
         WalletDto walletDto = getItemByMemberId(memberId);
-        return walletDto.getBalance();
+        return walletDto.balance();
     }
 }
