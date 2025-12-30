@@ -1,6 +1,6 @@
 package com.back.shared.market.dto;
 
-import com.back.standard.CanGetModelTypeCode;
+import com.back.standard.modelType.CanGetModelTypeCode;
 import java.time.LocalDateTime;
 
 public record OrderDto (

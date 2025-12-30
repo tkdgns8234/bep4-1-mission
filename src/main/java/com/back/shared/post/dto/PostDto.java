@@ -1,6 +1,6 @@
 package com.back.shared.post.dto;
 
-import com.back.standard.CanGetModelTypeCode;
+import com.back.standard.modelType.CanGetModelTypeCode;
 
 import java.time.LocalDateTime;
 
