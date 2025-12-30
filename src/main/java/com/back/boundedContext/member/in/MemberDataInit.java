@@ -2,7 +2,6 @@ package com.back.boundedContext.member.in;
 
 import com.back.boundedContext.member.app.MemberFacade;
 import com.back.boundedContext.member.domain.Member;
-import com.back.shared.member.dto.MemberDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
@@ -48,6 +47,6 @@ public class MemberDataInit {
 
     @Transactional
     public void modifyMember() {
-        memberFacade.modify(new MemberDto(2, null, null, "정상훈", "111", "pwd",0));
+//        memberFacade.modify(new MemberDto(6, null, null, "holding", "111", "pwd",0));
     }
 }

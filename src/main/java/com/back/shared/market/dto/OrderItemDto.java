@@ -3,7 +3,8 @@ package com.back.shared.market.dto;
 import java.time.LocalDateTime;
 
 public record OrderItemDto(
-        int id, LocalDateTime createDate,
+        int id,
+        LocalDateTime createDate,
         LocalDateTime modifyDate,
         int orderId,
         int buyerId,
@@ -14,5 +15,11 @@ public record OrderItemDto(
         String productName,
         long price,
         long salePrice,
-        double payoutRate
-) { }
+        double payoutRate,
+        long payoutFee,
+        long fee
+) {
+    public String getModelTypeCode() {
+        return "OrderItem";
+    }
+}

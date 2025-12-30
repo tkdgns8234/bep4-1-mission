@@ -124,7 +124,7 @@ public class MarketDataInit {
     public void makeBaseCartItems() {
         MarketMember user1Member = marketFacade.findMemberByUsername("user1").get();
         MarketMember user2Member = marketFacade.findMemberByUsername("user2").get();
-        MarketMember user3Member = marketFacade.findMemberByUsername("정상훈").get();
+        MarketMember user3Member = marketFacade.findMemberByUsername("user3").get();
 
         Cart cart1 = marketFacade.findCartByBuyer(user1Member).get();
         Cart cart2 = marketFacade.findCartByBuyer(user2Member).get();
@@ -158,7 +158,7 @@ public class MarketDataInit {
 
         MarketMember user1Member = marketFacade.findMemberByUsername("user1").get();
         MarketMember user2Member = marketFacade.findMemberByUsername("user2").get();
-        MarketMember user3Member = marketFacade.findMemberByUsername("정상훈").get();
+        MarketMember user3Member = marketFacade.findMemberByUsername("user3").get();
 
         Cart cart1 = marketFacade.findCartByBuyer(user1Member).get();
         Cart cart2 = marketFacade.findCartByBuyer(user2Member).get();
