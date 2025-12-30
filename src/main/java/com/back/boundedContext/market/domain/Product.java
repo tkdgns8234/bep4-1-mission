@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Product extends BaseIdAndTime {
     @ManyToOne(fetch = FetchType.LAZY)
-    private MarketMember marketMember;
+    private MarketMember seller;
     private String sourceTypeCode;
     int sourceId;
     private String name;
