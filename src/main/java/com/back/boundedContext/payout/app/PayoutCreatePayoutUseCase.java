@@ -1,6 +1,9 @@
 package com.back.boundedContext.payout.app;
 
 import com.back.boundedContext.payout.domain.Payout;
+import com.back.boundedContext.payout.domain.PayoutMember;
+import com.back.boundedContext.payout.out.PayoutMemberRepository;
+import com.back.boundedContext.payout.out.PayoutRepository;
 import com.back.shared.payout.dto.PayoutMemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,8 +11,14 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class PayoutCreatePayoutUseCase {
+    private final PayoutRepository payoutRepository;
+    private final PayoutMemberRepository payoutMemberRepository;
+
     public Payout createPayout(PayoutMemberDto payee) {
-        System.out.println("createPayout called with payee: " + payee);
-        return new Payout();
+        PayoutMember _payee = payoutMemberRepository.getReferenceById(payee.id());
+
+        return payoutRepository.save(
+                new Payout(_payee)
+        );
     }
 }
