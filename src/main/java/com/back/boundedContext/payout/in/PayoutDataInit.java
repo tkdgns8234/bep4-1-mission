@@ -95,7 +95,7 @@ public class PayoutDataInit {
     @Transactional
     public void completePayoutsMore() {
         payoutFacade.completePayoutsMore(4);
-        payoutFacade.completePayoutsMore(2);
-        payoutFacade.completePayoutsMore(2);
+//        payoutFacade.completePayoutsMore(2);
+//        payoutFacade.completePayoutsMore(2);
     }
 }
